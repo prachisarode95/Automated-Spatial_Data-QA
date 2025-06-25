@@ -22,12 +22,11 @@ A Python-based QA engine to detect geometry errors in OSM urban datasets using P
 ## 📁 Project Structure
 ```
 automated_spatial_qa/
-├── .git/                          # Git versioning folder
 ├── .gitignore                     # Files/folders to exclude from version control
 ├── requirements.txt              # Conda or pip dependencies
 │
 ├── data/                          # Input spatial data (e.g., .osm.pbf files)
-│   └── maharashtra-latest.osm.pbf
+│   └── pune.osm.pbf
 │
 ├── notebook/                      # Jupyter notebooks
 │   └── run_all_qa.ipynb           # Final automation notebook (with markdown + code)
