@@ -67,3 +67,9 @@ jupyter notebook
 | `spatial_qa_errors.gpkg` | Can be opened in QGIS/ArcGIS |
 | `.ipynb` notebook        | Full code for entire spatial QA pipeline in one go |
 
+---
+# Outputs Visualization
+![Visualizing Spatial QA Errors](https://github.com/user-attachments/assets/e2c673e0-71f0-4156-b77b-20a374be66de)
+
+---
+
