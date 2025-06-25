@@ -19,6 +19,19 @@ A Python-based QA engine to detect geometry errors in OSM urban datasets using P
 - Generate error logs and summary QA reports
 
 ---
+## Sample QA Logic Implemented
+
+| Check             | Function                          |
+| ----------------- | --------------------------------- |
+| Invalid Geometry  | `ST_IsValid()`                    |
+| Overlaps          | `ST_Overlaps()`                   |
+| Duplicates        | `ST_Equals()` + `ST_Intersects()` |
+| Slivers           | `ST_Area() < threshold`           |
+| Zero-Length Lines | `ST_Length()`                     |
+| Point Duplicates  | `ST_Equals()` between points      |
+
+---
+
 ## Project Structure
 ```
 automated_spatial_qa/
