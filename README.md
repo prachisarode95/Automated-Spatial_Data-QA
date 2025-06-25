@@ -1,6 +1,6 @@
-# Title: 🛰️ Automated Spatial QA for Urban GIS Layers using Python & PostGIS
+# Title: Automated Spatial QA for Urban GIS Layers using Python & PostGIS
 
-# Project Summary: 
+## Project Summary: 
 A Python-based QA engine to detect geometry errors in OSM urban datasets using PostGIS. Outputs include CSV reports and GIS-ready spatial files. Inspired by enterprise QA workflows and built to demonstrate spatial data automation skills.
 
 ## Project Phases:
@@ -11,7 +11,7 @@ A Python-based QA engine to detect geometry errors in OSM urban datasets using P
 **Phase 4:** Generate CSV and GeoPackage output  
 
 ---
-## 🚀 Features
+## Features
 - Run 100% in Python + PostGIS
 - Validate spatial data stored in PostGIS
 - Detect invalid geometries, overlaps, topology errors, duplicates
@@ -19,7 +19,7 @@ A Python-based QA engine to detect geometry errors in OSM urban datasets using P
 - Generate error logs and summary QA reports
 
 ---
-## 📁 Project Structure
+## Project Structure
 ```
 automated_spatial_qa/
 ├── .gitignore                     # Files/folders to exclude from version control
@@ -45,20 +45,41 @@ automated_spatial_qa/
 │   └── (optional custom .sql files)
 
 ```
+## Technologies Used
+- Python (3.10)
 
-## ⚙️ Setup
+- PostgreSQL + PostGIS (v14+)
 
+- Geopandas, Pandas, Psycopg2, SQLAlchemy
+
+- OpenStreetMap PBF data
+
+- Jupyter Notebook for interactive runs
+
+---
+
+## How to Run This Project
+
+### Clone the Repository
 ```bash
-pip install -r requirements.txt
-
-conda create -n urbanqa_env python=3.11
+git clone https://github.com/prachisarode95/Automated-Spatial_Data-QA.git
+cd Automated-Spatial_Data-QA
+```
+### Set Up Conda Environment
+```bash
+conda create -n urbanqa_env python=3.10
 conda activate urbanqa_env
 conda install psycopg2 pandas geopandas sqlalchemy jupyter -c conda-forge
-
+```
+### Start the Notebook
+```
 jupyter notebook
 
 ```
+Note: Open notebook/QA_Reporting_Output_Automation.ipynb and run all cells. Alternatively, run scripts/run_all_qa.py from the terminal.
+
 ---
+
 # Outputs
 
 | Output Type              | Description                  |
@@ -72,4 +93,3 @@ jupyter notebook
 ![Visualizing Spatial QA Errors](https://github.com/user-attachments/assets/e2c673e0-71f0-4156-b77b-20a374be66de)
 
 ---
-
