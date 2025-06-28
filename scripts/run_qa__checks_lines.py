@@ -5,42 +5,42 @@ DB_PARAMS = {
     "host": "localhost",
     "dbname": "urban_qa",
     "user": "postgres",
-    "password": "perry95",  # Replace
+    "password": "",  # Replace with your password
 }
 
 line_qa_queries = {
     "Invalid Geometry (Line)": """
-        INSERT INTO spatial_qa_log (table_name, feature_id, issue_type, issue_description, geometry)
+        INSERT INTO pune_qa_log (table_name, feature_id, issue_type, issue_description, geometry)
         SELECT
-          'osm2pgsql_line',
-          osm_id,
+          'lines',
+          way_id,
           'Invalid Geometry (Line)',
           ST_IsValidReason(geom),
           geom
-        FROM osm2pgsql_line
+        FROM lines
         WHERE NOT ST_IsValid(geom);
     """,
     
     "Zero-Length Line": """
-        INSERT INTO spatial_qa_log (table_name, feature_id, issue_type, issue_description, geometry)
+        INSERT INTO pune_qa_log (table_name, feature_id, issue_type, issue_description, geometry)
         SELECT
-          'osm2pgsql_line',
-          osm_id,
+          'lines',
+          way_id,
           'Zero-Length Line',
           'Line length below threshold (1m)',
           geom
-        FROM osm2pgsql_line
-        WHERE ST_Length(geom::geography) < 1;
+        FROM lines
+        WHERE ST_Length(ST_Transform(geom, 4326)::geography) < 1;
     """,
     
     "Duplicate Line": """
         WITH line_data AS (
-          SELECT * FROM osm2pgsql_line
+          SELECT * FROM lines
         )
-        INSERT INTO spatial_qa_log (table_name, feature_id, issue_type, issue_description, geometry)
+        INSERT INTO pune_qa_log (table_name, feature_id, issue_type, issue_description, geometry)
         SELECT
-          'osm2pgsql_line',
-          a.osm_id,
+          'lines',
+          a.way_id,
           'Duplicate Line',
           'Same geometry as another line',
           a.geom
@@ -48,7 +48,7 @@ line_qa_queries = {
         JOIN line_data b
         ON ST_Intersects(a.geom, b.geom)
            AND ST_Equals(a.geom, b.geom)
-           AND a.osm_id < b.osm_id;
+           AND a.way_id < b.way_id;
     """
 }
 
@@ -57,24 +57,24 @@ def run_line_qa():
         conn = psycopg2.connect(**DB_PARAMS)
         cur = conn.cursor()
 
-        print(f"\n🚦 Line QA checks started at {datetime.now()}\n")
+        print(f"\n Line QA checks started at {datetime.now()}\n")
 
         for check_name, query in line_qa_queries.items():
-            print(f"🔍 Running: {check_name}")
+            print(f" Running: {check_name}")
             cur.execute(query)
             conn.commit()
 
             cur.execute(
-                f"""SELECT COUNT(*) FROM spatial_qa_log WHERE issue_type = %s;""",
+                f"""SELECT COUNT(*) FROM pune_qa_log WHERE issue_type = %s;""",
                 (check_name,)
             )
             count = cur.fetchone()[0]
-            print(f"✅ Inserted rows for {check_name}: {count}\n")
+            print(f" Inserted rows for {check_name}: {count}\n")
 
-        print(f"🎯 Line QA completed at {datetime.now()}\n")
+        print(f" Line QA completed at {datetime.now()}\n")
 
     except Exception as e:
-        print(f"❌ Error in Line QA: {e}")
+        print(f" Error in Line QA: {e}")
         conn.rollback()
     finally:
         cur.close()
