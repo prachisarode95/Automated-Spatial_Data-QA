@@ -40,13 +40,14 @@ automated_spatial_qa/
 │
 ├── data/                          # Input spatial data (e.g., .osm.pbf files)
 │   └── pune.osm.pbf
+    └── generic.lua
 │
 ├── notebook/                      # Jupyter notebooks
 │   └── run_all_qa.ipynb           # Final automation notebook (with markdown + code)
 │
 ├── outputs/                       # QA output files
-│   ├── qa_summary.csv             # CSV report of all spatial QA issues
-│   └── spatial_qa_errors.gpkg     # GeoPackage of invalid/duplicate geometries
+│   ├── pune_qa_errors.csv             # CSV report of all spatial QA issues
+│   └── pune_qa_errors.gpkg     # GeoPackage of invalid/duplicate geometries
 │
 ├── scripts/                       # Python scripts for modular QA
 │   ├── run_all_qa.py              # Master script for full automation
@@ -80,7 +81,7 @@ cd Automated-Spatial_Data-QA
 ```
 ### Set Up Conda Environment
 ```bash
-conda create -n urbanqa_env python=3.10
+conda create -n urbanqa_env python=3.11
 conda activate urbanqa_env
 conda install psycopg2 pandas geopandas sqlalchemy jupyter -c conda-forge
 ```
@@ -89,7 +90,7 @@ conda install psycopg2 pandas geopandas sqlalchemy jupyter -c conda-forge
 jupyter notebook
 
 ```
-Note: Open notebook/QA_Reporting_Output_Automation.ipynb and run all cells. Alternatively, run scripts/run_all_qa.py from the terminal.
+Note: Open notebook/run_all_qa.ipynb and run all cells. Alternatively, run scripts/run_all_qa.py from the terminal.
 
 ---
 
@@ -97,12 +98,12 @@ Note: Open notebook/QA_Reporting_Output_Automation.ipynb and run all cells. Alte
 
 | Output Type              | Description                  |
 | ------------------------ | ---------------------------- |
-| `qa_summary.csv`         | Tabular log of all issues    |
-| `spatial_qa_errors.gpkg` | Can be opened in QGIS/ArcGIS |
+| `pune_qa_errors.csv`         | Tabular log of all issues    |
+| `pune_qa_errors.gpkg` | Can be opened in QGIS/ArcGIS |
 | `.ipynb` notebook        | Full code for entire spatial QA pipeline in one go |
 
 ---
 # Outputs Visualization
-![Visualizing Spatial QA Errors](https://github.com/user-attachments/assets/e2c673e0-71f0-4156-b77b-20a374be66de)
+![Visualizing Spatial QA Errors](https://github.com/user-attachments/assets/eca582f6-4627-46e5-9bb3-5e0dbd7e6282)
 
 ---
