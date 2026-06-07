@@ -1,5 +1,5 @@
 # Spatial Data Quality Automation Pipeline  
-> Automated Spatial QA for Urban GIS Layers using Python & PostGIS
+> Automated Spatial QA for Urban Spatial Layers using Python & PostGIS
 ---
 
 ## 1. Problem Statement
@@ -67,7 +67,7 @@ Accurate geospatial data is critical across multiple industries:
 
 ---
 
-## 5. How It Works (Pipeline)
+## 5. How It Works (Workflow)
 
 ### Step 1: Data Ingestion
 - Download OpenStreetMap `.pbf` data
@@ -102,8 +102,8 @@ Run automated QA checks using SQL + Python:
 
 ---
 
-## 🚀 Key Takeaways
+## Key Takeaways
 
-- Demonstrates end-to-end **spatial data pipeline design**
+- Demonstrates **spatial data pipeline design**
 - Combines **database + automation + geospatial analytics**
 - Represents a transition from **manual GIS workflows → scalable engineering systems**
